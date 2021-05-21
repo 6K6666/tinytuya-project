@@ -18,7 +18,7 @@ async def on_message(message):
     admin = config.get('settings', 'admin')
     if message.content.startswith(prefix + "shutdown"):
         if str(message.author.id) in admin:
-            a = tinytuya.OutletDevice('16505438bcddc29c7d3d', '10.0.0.105', '63ea5d341f54cb10')
+            a = tinytuya.OutletDevice('DEVICE_ID_HERE', 'IP_ADDRESS_HERE', 'LOCAL_KEY_HERE')
             a.set_version(3.3)
             a.turn_off()
             data = a.status() 
@@ -31,7 +31,7 @@ async def on_message(message):
 
     if message.content.startswith(prefix + "restart"):
         if str(message.author.id) in admin:
-            a = tinytuya.OutletDevice('16505438bcddc29c7d3d', '10.0.0.105', '63ea5d341f54cb10')
+            a = tinytuya.OutletDevice('DEVICE_ID_HERE', 'IP_ADDRESS_HERE', 'LOCAL_KEY_HERE')
             a.set_version(3.3)
             a.turn_off()
             data = a.status() 
@@ -48,7 +48,7 @@ async def on_message(message):
 
     if message.content.startswith(prefix + "start"):
         if str(message.author.id) in admin:
-            a = tinytuya.OutletDevice('16505438bcddc29c7d3d', '10.0.0.105', '63ea5d341f54cb10')
+            a = tinytuya.OutletDevice('DEVICE_ID_HERE', 'IP_ADDRESS_HERE', 'LOCAL_KEY_HERE')
             a.set_version(3.3)
             a.turn_on()
             data = a.status() 
