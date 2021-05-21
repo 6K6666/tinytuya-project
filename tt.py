@@ -7,18 +7,26 @@ config.read('config.ini')
 prefix = "!"
 token = ("PUT BOT TOKEN HERE")
 
+# SET THESE GLOBAL VARIABLES
+
+device_id = ("")
+ip_address = ("")
+local_key = ("")
+
+# DISCORD BOT
+
 @bot.event # Startup
 async def on_ready():
     print(("I am running on " + bot.user.name))
     print(("With the ID: " + str(bot.user.id)))
     print("connected on " + str(len(bot.guilds)) + " servers:")
 
-@bot.event
+@bot.event # Bot commands
 async def on_message(message):
     admin = config.get('settings', 'admin')
     if message.content.startswith(prefix + "shutdown"):
         if str(message.author.id) in admin:
-            a = tinytuya.OutletDevice('DEVICE_ID_HERE', 'IP_ADDRESS_HERE', 'LOCAL_KEY_HERE')
+            a = tinytuya.OutletDevice(device_id, ip_address, local_key)
             a.set_version(3.3)
             a.turn_off()
             data = a.status() 
@@ -31,7 +39,7 @@ async def on_message(message):
 
     if message.content.startswith(prefix + "restart"):
         if str(message.author.id) in admin:
-            a = tinytuya.OutletDevice('DEVICE_ID_HERE', 'IP_ADDRESS_HERE', 'LOCAL_KEY_HERE')
+            a = tinytuya.OutletDevice(device_id, ip_address, local_key)
             a.set_version(3.3)
             a.turn_off()
             data = a.status() 
@@ -48,7 +56,7 @@ async def on_message(message):
 
     if message.content.startswith(prefix + "start"):
         if str(message.author.id) in admin:
-            a = tinytuya.OutletDevice('DEVICE_ID_HERE', 'IP_ADDRESS_HERE', 'LOCAL_KEY_HERE')
+            a = tinytuya.OutletDevice(device_id, ip_address, local_key)
             a.set_version(3.3)
             a.turn_on()
             data = a.status() 
